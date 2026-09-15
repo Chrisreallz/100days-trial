@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Days — Reading Syllabus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15171C;
+    --panel:#1B1E25;
+    --text:#EDE7DA;
+    --muted:#948C7E;
+    --gold:#D9A441;
+    --rose:#B23A2E;
+    --teal:#3E7C74;
+    --hairline:#2C303A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:56px 24px 80px;
+  }
+  header h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:2.4rem;
+    line-height:1.15;
+    margin:0 0 14px;
+    max-width:16ch;
+  }
+  header p.sub{
+    color:var(--muted);
+    font-size:1.02rem;
+    line-height:1.55;
+    max-width:52ch;
+    margin:0 0 32px;
+  }
+  header p.lede{
+    font-size:0.98rem;
+    line-height:1.65;
+    max-width:56ch;
+    margin:0 0 36px;
+    color:var(--text);
+  }
+
+  .progress-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-size:0.88rem;
+    color:var(--muted);
+  }
+  .progress-row span.count{
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+  }
+  .progress-track{
+    height:3px;
+    background:var(--hairline);
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:48px;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--rose);
+    transition:width 0.4s ease;
+  }
+
+  .act{
+    margin-bottom:52px;
+  }
+  .act-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    border-bottom:1px solid var(--hairline);
+    padding-bottom:14px;
+    margin-bottom:20px;
+  }
+  .act-numeral{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.5rem;
+    color:var(--gold);
+    min-width:2ch;
+  }
+  .act-titles h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:1.35rem;
+    margin:0 0 2px;
+  }
+  .act-titles .days{
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+
+  ul.reads{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.reads li{
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  ul.reads li:last-child{
+    border-bottom:none;
+  }
+
+  .punch{
+    flex:none;
+    width:20px;
+    height:20px;
+    margin-top:2px;
+    border-radius:50%;
+    border:1.5px solid var(--muted);
+    cursor:pointer;
+    position:relative;
+    transition:transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .punch svg{
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:11px;
+    height:11px;
+    opacity:0;
+    transition:opacity 0.15s ease;
+  }
+  input[type="checkbox"]{
+    position:absolute;
+    opacity:0;
+    width:20px;
+    height:20px;
+    margin:0;
+    cursor:pointer;
+  }
+  input[type="checkbox"]:checked + .punch{
+    background:var(--rose);
+    border-color:var(--rose);
+    transform:scale(1.05);
+  }
+  input[type="checkbox"]:checked + .punch svg{
+    opacity:1;
+  }
+  .item-body{flex:1;}
+  .item-top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .item-title{
+    font-weight:600;
+    font-size:0.98rem;
+  }
+  .item-title .author{
+    font-weight:400;
+    color:var(--muted);
+  }
+  .tag{
+    font-size:0.72rem;
+    color:var(--teal);
+    border:1px solid var(--teal);
+    border-radius:10px;
+    padding:1px 8px;
+    white-space:nowrap;
+  }
+  .item-blurb{
+    font-size:0.86rem;
+    color:var(--muted);
+    line-height:1.5;
+    margin-top:4px;
+  }
+  input[type="checkbox"]:checked ~ .item-body .item-title,
+  label.checked .item-title{
+    text-decoration:line-through;
+    text-decoration-color:var(--hairline);
+    color:var(--muted);
+  }
+
+  footer{
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid var(--hairline);
+    font-size:0.86rem;
+    color:var(--muted);
+    line-height:1.6;
+    max-width:56ch;
+  }
+
+  @media (max-width:480px){
+    header h1{font-size:1.9rem;}
+    .wrap{padding:40px 18px 60px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>A hundred days to build the stage under you.</h1>
+    <p class="sub">Four tracks, paced across 100 days — acting, content, networking, and the day job that pays for all of it.</p>
+    <p class="lede">
+      The order below runs beginner to advanced within each track. You don't need to finish one track before starting the next —
+      networking and the day-job reading can run underneath the acting and content work the whole time. Roughly one book every
+      5–6 days keeps pace with the 100-day window; skip around if something's clearly more useful to you right now.
+    </p>
+
+    <div class="progress-row">
+      <span>Progress</span>
+      <span class="count"><span id="checkedCount">0</span> of <span id="totalCount">18</span> read</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </header>
+
+  <!-- ACT I -->
+  <section class="act">
+    <div class="act-head">
+      <span class="act-numeral">I</span>
+      <div class="act-titles">
+        <h2>Finding your footing</h2>
+        <div class="days">Days 1–25 · the craft and business of acting</div>
+      </div>
+    </div>
+    <ul class="reads">
+      <li>
+        <input type="checkbox" id="c1">
+        <label for="c1" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Audition <span class="author">— Michael Shurtleff</span></span>
+            <span class="tag">Beginner</span>
+          </div>
+          <div class="item-blurb">How auditions actually get decided, from the casting side of the table.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c2">
+        <label for="c2" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Respect for Acting <span class="author">— Uta Hagen</span></span>
+            <span class="tag">Beginner</span>
+          </div>
+          <div class="item-blurb">The foundational technique book most working actors still return to.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c3">
+        <label for="c3" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">An Actor Prepares <span class="author">— Constantin Stanislavski</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">Where modern naturalistic acting technique started — worth reading once, slowly.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c4">
+        <label for="c4" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">True and False <span class="author">— David Mamet</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">A blunt corrective to acting-school mysticism, from someone who's directed a lot of actors.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c5">
+        <label for="c5" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Self-Management for Actors <span class="author">— Bonnie Gillespie</span></span>
+            <span class="tag">Advanced</span>
+          </div>
+          <div class="item-blurb">Treats your acting career as a small business you run yourself — submissions, marketing, all of it.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ACT II -->
+  <section class="act">
+    <div class="act-head">
+      <span class="act-numeral">II</span>
+      <div class="act-titles">
+        <h2>Building your stage</h2>
+        <div class="days">Days 26–50 · YouTube and content creation</div>
+      </div>
+    </div>
+    <ul class="reads">
+      <li>
+        <input type="checkbox" id="c6">
+        <label for="c6" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Crushing It! <span class="author">— Gary Vaynerchuk</span></span>
+            <span class="tag">Beginner</span>
+          </div>
+          <div class="item-blurb">A framework for building a personal brand out of what you're already doing.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c7">
+        <label for="c7" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">YouTube Secrets <span class="author">— Sean Cannell & Benji Travis</span></span>
+            <span class="tag">Beginner</span>
+          </div>
+          <div class="item-blurb">The nuts and bolts — thumbnails, retention, upload schedules — from two people who've done it.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c8">
+        <label for="c8" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Videocracy <span class="author">— Kevin Allocca</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">Why videos actually spread, from someone who watched it happen from inside YouTube.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c9">
+        <label for="c9" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Content Inc. <span class="author">— Joe Pulizzi</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">Build the audience first, figure out what to sell them second.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c10">
+        <label for="c10" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Company of One <span class="author">— Paul Jarvis</span></span>
+            <span class="tag">Advanced</span>
+          </div>
+          <div class="item-blurb">The case for staying small and sustainable instead of chasing scale for its own sake.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ACT III -->
+  <section class="act">
+    <div class="act-head">
+      <span class="act-numeral">III</span>
+      <div class="act-titles">
+        <h2>Working the room</h2>
+        <div class="days">Days 51–75 · networking</div>
+      </div>
+    </div>
+    <ul class="reads">
+      <li>
+        <input type="checkbox" id="c11">
+        <label for="c11" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">How to Win Friends and Influence People <span class="author">— Dale Carnegie</span></span>
+            <span class="tag">Beginner</span>
+          </div>
+          <div class="item-blurb">Dated in places, but the core idea — genuine interest in people — still holds up.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c12">
+        <label for="c12" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Never Eat Alone <span class="author">— Keith Ferrazzi</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">Networking reframed as generosity and follow-through, not transactional schmoozing.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c13">
+        <label for="c13" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">The Like Switch <span class="author">— Jack Schafer & Marvin Karlins</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">An ex-FBI behavioral analyst's read on what actually makes people like you.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c14">
+        <label for="c14" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Give and Take <span class="author">— Adam Grant</span></span>
+            <span class="tag">Advanced</span>
+          </div>
+          <div class="item-blurb">The data-backed case that givers win in the long run — with real caveats about burnout.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ACT IV -->
+  <section class="act">
+    <div class="act-head">
+      <span class="act-numeral">IV</span>
+      <div class="act-titles">
+        <h2>The day job</h2>
+        <div class="days">Days 76–100 · corporate and remote work</div>
+      </div>
+    </div>
+    <ul class="reads">
+      <li>
+        <input type="checkbox" id="c15">
+        <label for="c15" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Deep Work <span class="author">— Cal Newport</span></span>
+            <span class="tag">Beginner</span>
+          </div>
+          <div class="item-blurb">The focus skills that make remote work actually productive instead of just flexible.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c16">
+        <label for="c16" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">Remote: Office Not Required <span class="author">— Jason Fried & David Heinemeier Hansson</span></span>
+            <span class="tag">Intermediate</span>
+          </div>
+          <div class="item-blurb">Written by people who built a fully remote company before it was normal.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c17">
+        <label for="c17" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">The Trusted Advisor <span class="author">— David Maister, Charles Green & Robert Galford</span></span>
+            <span class="tag">Advanced</span>
+          </div>
+          <div class="item-blurb">How to earn trust quickly — useful for freelance work and corporate relationships alike.</div>
+        </div>
+      </li>
+      <li>
+        <input type="checkbox" id="c18">
+        <label for="c18" class="punch"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></label>
+        <div class="item-body">
+          <div class="item-top">
+            <span class="item-title">So Good They Can't Ignore You <span class="author">— Cal Newport</span></span>
+            <span class="tag">Advanced</span>
+          </div>
+          <div class="item-blurb">Skill-building beats "follow your passion" — a fitting close to the 100 days.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    Checkmarks reset if you close this page — it's here to plan with, not to store your progress. Screenshot it or copy it
+    somewhere durable once you've settled on an order that fits.
+  </footer>
+
+</div>
+
+<script>
+  const boxes = document.querySelectorAll('input[type="checkbox"]');
+  const totalEl = document.getElementById('totalCount');
+  const countEl = document.getElementById('checkedCount');
+  const fillEl = document.getElementById('progressFill');
+  totalEl.textContent = boxes.length;
+
+  function updateProgress(){
+    const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    countEl.textContent = checked;
+    fillEl.style.width = (checked / boxes.length * 100) + '%';
+  }
+  boxes.forEach(b => b.addEventListener('change', updateProgress));
+  updateProgress();
+</script>
+
+</body>
+</html>
